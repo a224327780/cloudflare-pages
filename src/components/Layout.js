@@ -1,5 +1,4 @@
 import React from "react";
-import {Content} from "./Content";
 import {Link} from "react-router-dom";
 import {Sidebar} from "./Sider";
 import {Breadcrumb} from "./Breadcrumb";
@@ -12,11 +11,11 @@ export const Layout = () => {
                 <div className="logo">
                     <Link to="/">OneIndex</Link>
                 </div>
-                <Sidebar></Sidebar>
+                <Sidebar />
             </div>
             <div className="main-content">
                 <div className="content">
-                    <Breadcrumb></Breadcrumb>
+                    <Breadcrumb />
                     <Outlet />
                 </div>
             </div>
