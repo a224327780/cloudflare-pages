@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sidebar {
+    @apply fixed left-0 w-72
+}
+
+.main-content {
+    @apply relative pl-72
+}
+
+.content {
+    @apply px-6
+}
+
+.breadcrumb {
+    @apply flex mb-8
+}
+
+.form-group {
+    @apply mb-4
+}
+
+.form-label {
+    @apply inline-block mb-2
+}
+
+.form-control {
+    @apply block w-full border border-solid rounded py-1 px-2.5 border-gray-300 shadow-sm
+    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+}
