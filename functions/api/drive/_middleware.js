@@ -1,13 +1,11 @@
+import {jsonResponse} from "../../utils/jsonResponse";
+
 const handler = async ({next}) => {
-    let data = {message: '', code: 0, data: {}}
     try {
-        data['data'] = await next()
+        return await next()
     } catch (err) {
-        data['code'] = 1
-        data['message'] = 'error'
+        return jsonResponse({message: `${err.message}\n${err.stack}`, code: 1, data: {}})
     }
-    console.log(111)
-    return new Response(JSON.stringify(data))
 }
 
 export const onRequest = [

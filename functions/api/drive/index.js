@@ -10,12 +10,11 @@ export async function onRequest(context) {
         data, // arbitrary space for passing data between middlewares
     } = context;
 
-    console.log(env.KV_INDEX)
-    let data1 = {message: '', code: 0, data: {}}
+    const value = await env.KV_INDEX.list()
     const {pathname, searchParams, origin} = new URL(request.url)
-    console.log(searchParams)
     // if (pathname.includes('authorize')) {
     // }
+    let data1 = {message: '', code: 0, data: [searchParams.toString(), value, params]}
 
     return jsonResponse(data1)
 }
