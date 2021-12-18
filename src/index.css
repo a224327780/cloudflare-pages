@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 body {
-    outline: none
+    outline: none;
+    font-family: "Roman-55", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Serif SC", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif;
+}
+
+@font-face {
+    font-family: 'Satisfy';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Satisfy Regular'), local('Satisfy-Regular'), url(https://cdn.jsdelivr.net/gh/a224327780/oneadmin@0.1/static/fonts/satisfy.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 select {
@@ -20,24 +29,53 @@ select {
     border-color: transparent;
 }
 
+.wrapper {
+    @apply flex h-screen
+}
+
 .sidebar {
-    @apply fixed left-0 w-72
+    @apply flex-initial w-56 bg-gray-700 text-white divide-y divide-gray-800
+}
+
+.sidebar .logo {
+    font-family: 'satisfy', serif;
+    @apply py-4 text-center text-2xl font-semibold
+}
+
+.menu {
+    @apply pt-4 divide-y divide-gray-700
+}
+
+.menu > li > a {
+    @apply block pl-5 py-1 bg-gray-800 text-lg font-semibold
+}
+
+.menu .sub-menu {
+    @apply py-2
+}
+
+.menu .sub-menu > li > a {
+    @apply block pl-12 py-1 text-gray-400 text-base font-normal hover:bg-gray-600 hover:text-white
 }
 
 .main-content {
-    @apply relative pl-72
+    @apply relative flex-auto
 }
 
 .content {
     @apply px-6
 }
 
-.breadcrumb {
-    @apply flex mb-8
+.header {
+    @apply flex py-2 px-4 bg-slate-200 text-slate-600
 }
 
 .form-group {
     @apply mb-4
+}
+
+.form-group .error {
+    @apply py-1 text-sm text-rose-500 font-medium
 }
 
 .form-label {
@@ -52,6 +90,11 @@ select {
 .btn {
     @apply text-white bg-slate-600 hover:bg-slate-500 focus:bg-slate-700 font-medium rounded-md text-sm px-5 py-2.5 text-center w-full
 }
+
+.hide {
+    @apply hidden
+}
+
 .spinner-grow {
     display: inline-block;
     width: 1rem;

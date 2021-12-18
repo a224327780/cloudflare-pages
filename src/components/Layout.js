@@ -6,7 +6,7 @@ import {Outlet} from "react-router";
 
 export const Layout = () => {
     return (
-        <div className="wrapper h-full w-full">
+        <div className="wrapper">
             <div className="sidebar">
                 <div className="logo">
                     <Link to="/">OneIndex</Link>
@@ -14,8 +14,8 @@ export const Layout = () => {
                 <Sidebar />
             </div>
             <div className="main-content">
+                <Breadcrumb />
                 <div className="content">
-                    <Breadcrumb />
                     <Outlet />
                 </div>
             </div>

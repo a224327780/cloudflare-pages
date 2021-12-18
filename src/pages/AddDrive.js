@@ -1,41 +1,54 @@
 import type {FC} from "react";
-import {useState} from "react";
+import {fetcher} from "../utils/fetcher";
 
 
 export const AddDrive: FC = () => {
-    const [driveType, setDriveType] = useState(null);
-    const [drive_id, setDriveId] = useState(null);
-    const [drive_name, setDriveName] = useState(null);
-    const [client_id, setClientId] = useState(null);
-    const [client_secret, setClientSecret] = useState(null);
+    const fields = ['drive_id', 'drive_name', 'client_id', 'client_secret']
 
-    const auth = (e) => {
+    const execute = (e) => {
         e.preventDefault()
+
+        let data = {}
+        let flag = true
+        data['driveType'] = document.getElementById('driveType').value
+        fields.forEach(function (item) {
+            const e = document.getElementById(item)
+            const e1 = e.parentNode.children[1]
+            const value = e.value
+            if (value === '') {
+                e1.className = 'error'
+                flag = false
+            } else {
+                e1.className = 'error hide'
+            }
+            data[item] = value
+        })
+        if (flag) {
+            const params = new URLSearchParams(data).toString()
+            const result = fetcher(`/api/drive/authorize?${params}`)
+            console.log(result)
+        }
+        console.log(data)
     }
     return (
-        <div className="w-5/12 ml-48 pt-20">
+        <div className="w-4/12 ml-48 pt-20">
             <form>
                 <div className="form-group">
-                    <select name="driveType" className="form-control">
+                    <select id="driveType" name="driveType" className="form-control">
                         <option value="OneDrive">OneDrive</option>
                         <option value="SharePoint">SharePoint</option>
                         <option value="GoogleDrive">GoogleDrive</option>
                     </select>
                 </div>
+                {fields.map((field) => (
+                    <div className="form-group" key={field}>
+                        <input type="text" name={field} id={field} placeholder={field} className="form-control"/>
+                        <p className="error hide">{field}不能空</p>
+                    </div>
+                ))}
+
                 <div className="form-group">
-                    <input type="text" name="drive_id" onChange={e => setDriveId(e.target.value)} placeholder="driveId" className="form-control"/>
-                </div>
-                <div className="form-group">
-                    <input type="text" placeholder="driveName" onChange={e => setDriveName(e.target.value)} name="drive_name" className="form-control"/>
-                </div>
-                <div className="form-group">
-                    <input type="text" placeholder="client_id" onChange={e => setClientId(e.target.value)} name="client_id" className="form-control"/>
-                </div>
-                <div className="form-group">
-                    <input type="text" placeholder="client_secret" onChange={e => setClientSecret(e.target.value)} name="client_secret" className="form-control"/>
-                </div>
-                <div className="form-group">
-                    <button onClick={(e) => auth(e)} type="button" className="btn">提交</button>
+                    <button onClick={(e) => execute(e)} type="button" className="btn">提交</button>
                 </div>
             </form>
         </div>
