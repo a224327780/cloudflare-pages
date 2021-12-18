@@ -4,8 +4,9 @@ const handler = async ({next}) => {
         data['data'] = await next()
     } catch (err) {
         data['code'] = 1
-        data['message'] = `${err.message}\n${err.stack}`
+        data['message'] = 'error'
     }
+    console.log(111)
     return new Response(JSON.stringify(data))
 }
 

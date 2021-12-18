@@ -1,6 +1,4 @@
-const authorize = (searchParams: URLSearchParams) => {
-    return ''
-}
+import {jsonResponse} from "../../utils/jsonResponse";
 
 export async function onRequest(context) {
     const {
@@ -13,10 +11,11 @@ export async function onRequest(context) {
     } = context;
 
     console.log(env.KV_INDEX)
+    let data1 = {message: '', code: 0, data: {}}
     const {pathname, searchParams, origin} = new URL(request.url)
-    if (pathname.includes('authorize')) {
-        return authorize(searchParams)
-    }
+    console.log(searchParams)
+    // if (pathname.includes('authorize')) {
+    // }
 
-    return '404';
+    return jsonResponse(data1)
 }
